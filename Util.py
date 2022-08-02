@@ -1,5 +1,7 @@
 # -*-coding:UTF-8 -*-
 import datetime
+import os.path
+from typing import Any
 
 import colorama
 
@@ -41,3 +43,19 @@ class Logger():
     def fail(self, t, safeLevel=0) -> int:
         self._output('Fail', t, colorama.Fore.LIGHTRED_EX)
         return safeLevel
+
+
+class Resource():
+    def __init__(self, assets_dir) -> None:
+        self.ad = assets_dir
+
+    def GetResourecePath(self, type_, name, k) -> str:
+        return self.ad + '/assets/{0}/{1}.{2}'.format(type_, name, k)
+
+    def GetResourceBytes(self, type_, name, k) -> bytes:
+        if os.path.isdir(self.ad + '/assets/{0}/{1}.{2}'.format(type_, name, k)):
+            with open(file=self.ad + '/assets/{0}/{1}.{2}'.format(type_, name, k), mode="rb") as rb:
+                by = rb.read()
+            return rb
+        else:
+            return bytes(None)
