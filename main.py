@@ -82,7 +82,6 @@ pygame.display.set_icon(Surfaces.icon)
 pygame.display.set_caption(title)
 
 def PaintLogo():
-    startImgAlpha = 255
     logoAlpha = 0
     while logoAlpha <= 255:
         Surfaces.logoImg.set_alpha(logoAlpha)
